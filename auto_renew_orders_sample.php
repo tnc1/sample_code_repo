@@ -224,26 +224,7 @@
 								$token_info = $connect->getInfo($tran_id);								
 								$order_item->post_tran_token_info = serialize($token_info);
 								logStr('Token info: ' . serialize($token_info));
-									
-								// Send e-mail to admins
-								$subject = 'Gold Üyelik Yenilendi!';
-								//$subject = "=?UTF-8?B?".base64_encode($subject)."?=";
-								$message = $user->username . '  http://teyzesizsiniz.com/profile/' . $user->username . '  (' . $user->email . ') \'in gold üyeliği saat ' . date('Y-m-d H:i:s') . '\'de yenilendi. ';
-								$message .= "\n";								
-								$message .= 'Kullanıcı son giriş tarihi: ' .  date("Y/n/j", $user->last_action);						
-								$message .= "\n";
-								$message .= 'Kullanıcı geçmiş yenilemeleri: ' .  $auto_renewal_count . ' adet';
-								$message .= "\n";
-								$message .= 'Bugün yenilenecek üyelikler: ' .  ($user_count-1) . ' adet';								
-								$message .= "\n";								
-								$site = elgg_get_site_entity();
-								$headers = "From: " . $site->name . " <" . $site->email . ">\r\n";
-								if(evcimeniz_is_production_site()) {
-									evcimeniz_sendgrid_mail($site->email, 'akbastuncay@gmail.com', $subject, $message);
-									evcimeniz_sendgrid_mail($site->email, 'bugra.cankaya@gmail.com', $subject, $message);
-								}
-
-								logStr($message);																																			
+																																												
 							}
 													
 							$token_info = $connect->getInfo($tran_id);								
